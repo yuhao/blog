@@ -160,7 +160,7 @@ The xy chromaticities of the three primaries and the white point (D50) in [D50-a
   </tr>
 </table>
 
-[Figure]
+<img src="/imgs/cat.png" width="400"/>
 
 The figure above just plots the xy chromaticities of the primaries under D65 and D50 adaptations. We can see that the adaptation from D65 to D50 is not dramatic but noticeable. An interesting observation is that, in changing the illuminant from D65 to D50, the primaries move roughly along the same direction from D65 to D50.
 
@@ -204,7 +204,7 @@ A key challenge in digital camera imaging is white balance, which arises from th
 
 The goal of white balance is to adjust the raw camera RGB values in such a way that the photo, when presented to the viewer under &Phi;<sub>v</sub>, will have the same color appearance as that of the original scene under &Phi;<sub>c</sub>. This is illustrated in the figure below, where \[R, G, B\]<sup>T</sup> denotes the raw camera RGB values (before color correction) and \[R<sub>wb</sub>, G<sub>wb</sub>, B<sub>wb</sub>\]<sup>T</sup> denotes the white balanced RGB, which is to be calculated. D<sub>c</sub> and D<sub>v</sub> in the figure denote the chromatic adaptation matrix under &Phi;<sub>c</sub> and &Phi;<sub>v</sub>, respectively.
 
-[Figure]
+<img src="/imgs/wb.png" width="500"/>
 
 \[R<sub>wb</sub>, G<sub>wb</sub>, B<sub>wb</sub>\]<sup>T</sup> can be calculated using chromatic adaptation. The only tricky thing here is that we don’t know the cone responses of the photographer before being adapted to &Phi;<sub>c</sub>. However, we do know the raw camera RGB values, from which we can calculate the pre-adapted cone responses of the photographer using the color correction matrix, which is denoted as T<sub>cam2lms</sub> in the figure above (technically CCM is Tcam2xyz, but it’s easier to go from XYZ to LMS --- a linear transformation). The rest is formality. The equations below show how to calculate \[R<sub>wb</sub>, G<sub>wb</sub>, B<sub>wb</sub>\]<sup>T</sup> from \[R, G, B\]<sup>T</sup>.
 
