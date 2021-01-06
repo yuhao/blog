@@ -388,16 +388,16 @@ These integrations represent the area under the CMF curves. This is why the Wiki
 
 Integrate both sides:
 
-```
-∫V(𝛌)d𝛌 = ∫L<sup>r</sup>R(𝛌)d𝛌 + ∫L<sup>g</sup>G(𝛌)d𝛌 + ∫L<sup>b</sup>B(𝛌)d𝛌
-        = L<sup>r</sup>∫R(𝛌)d𝛌 + L<sup>g</sup>∫G(𝛌)d𝛌 + L<sup>b</sup>∫B(𝛌)d𝛌
-```
+<code>
+>∫V(𝛌)d𝛌 = ∫L<sup>r</sup>R(𝛌)d𝛌 + ∫L<sup>g</sup>G(𝛌)d𝛌 + ∫L<sup>b</sup>B(𝛌)d𝛌
+>        = L<sup>r</sup>∫R(𝛌)d𝛌 + L<sup>g</sup>∫G(𝛌)d𝛌 + L<sup>b</sup>∫B(𝛌)d𝛌
+</code>
 
 Since `∫R(𝛌)d𝛌 = ∫G(𝛌)d𝛌 = ∫B(𝛌)d𝛌`, we have:
 
-```
+<code>
 ∫R(𝛌)d𝛌 = ∫G(𝛌)d𝛌 = ∫B(𝛌)d𝛌 = ∫V(𝛌)d𝛌/(L<sup>r</sup> + L<sup>g</sup>+ L<sup>b</sup>),
-```
+</code>
 
 Not only the areas under the three CMF curves are the same, their absolute area is the area under V(𝛌) scaled by <code>1/(L<sup>r</sup> + L<sup>g</sup>+ L<sup>b</sup>)</code>.
 
@@ -440,7 +440,7 @@ Plugging in <code>k(𝛌) = V(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(�
 ∑V(𝛌)𝚽(𝛌)r(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)) =
 ∑V(𝛌)𝚽(𝛌)g(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)) =
 ∑V(𝛌)𝚽(𝛌)b(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)),
-<code>
+</code>
 
 where V(𝛌), 𝚽(𝛌), r(𝛌), g(𝛌), and b(𝛌) are all known. So we have three variables L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup>, and two equations, which should allow us to get the ratios of the variables.
 
