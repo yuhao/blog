@@ -10,7 +10,9 @@ I recently visited a series of archaeological sites on my [road trip](https://ww
 
 At the Joshua Tree National Park, I saw this interesting scenario (in the picture below) where a group of light rocks and a mountain of dark rocks are contacting each other. I went up to take a closer look at the junction point, and it just seemed like that the two parts are naturally grown together. Clearly this is not influenced by human beings intentionally piling the light rocks to the dark mountain. So what happened here?
 
-[Figure]
+<p align="center">
+    <img src="/imgs/IMG_3166-300x225.jpg">
+</p>
 
 In fact, geoarchaeologists did find that the two parts were two different materials. The dark rock is **gneiss**, specially the Pinto gneiss, while the light rock is **granite**, specially the monzogranite. The monzogranite was formed by magma cooling down underneath the surface, and was originally covered by the Pinto gneiss. During a long period of time, ground water eroded the overlaying gneiss (dark rock), and flood cut through it. Eventually, the monzogranite (light rock) got exposed and even uplifted to the surface due to earth activities, forming the “contacting zone” above the ground with the originally covering gneiss, as we see today [1].
 
@@ -48,8 +50,8 @@ Different archaeologists can give you all kinds of professional reasons. However
 
 # References
 
-[1] Geologic formation of Joshua Tree National Park: http://www.nps.gov/jotr/learn/nature/geologicformations.htm
-[2] Geologic formation of Petrified Forest National Park: http://www.nps.gov/pefo/learn/nature/geologicformations.htm
-[3] Geology and the painted desert: http://www.nps.gov/pefo/upload/Geology2006.pdf
-[4] The painted desert: http://scienceviews.com/parks/painteddesert.html
-[5] America’s best idea: Sunset crater nearly destroyed by Hollywood: http://knau.org/post/americas-best-idea-sunset-crater-nearly-destroyed-hollwyood#stream/0
+1. Geologic formation of Joshua Tree National Park: http://www.nps.gov/jotr/learn/nature/geologicformations.htm
+2. Geologic formation of Petrified Forest National Park: http://www.nps.gov/pefo/learn/nature/geologicformations.htm
+3. Geology and the painted desert: http://www.nps.gov/pefo/upload/Geology2006.pdf
+4. The painted desert: http://scienceviews.com/parks/painteddesert.html
+5. America’s best idea: Sunset crater nearly destroyed by Hollywood: http://knau.org/post/americas-best-idea-sunset-crater-nearly-destroyed-hollwyood#stream/0
