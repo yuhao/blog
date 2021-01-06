@@ -18,13 +18,18 @@ In fact, geoarchaeologists did find that the two parts were two different materi
 
 You might think that this formation process so dramatic and hard to believe. Well if you know that it took nature about 100 millions years to form this, you probably wouldn’t be as surprised. In fact, monzogranite is everywhere in the park. Some are contacting the gneiss, some are standing alone as rock piles, such as the Split Rock as shown in the picture to the right. Regardless, the formation process of monzogranite rocks all the follow the same pattern as described above: magma cooling down followed by water flowing through to carve out vertical or horizontal lines. The surrounding materials are flushed away by flood for some rocks (e.g., Split Rock); some are still touching the rock (e.g., the “contact zone” example).
 
-[Figure]
+<p align="center">
+    <img src="/imgs/IMG_3162-225x300.jpg">
+</p>
 
 ## Example 2: Petrified Forest National Park
 
 The second (and a more beautiful!) example of different archaeological artifacts co-exist at the same location is the Painted Desert at the Petrified Forest National Park. In the left figure below, there is a clear color distinction between the black top of the mountain and the colorful body of it. The right figure below examines the color separation more closely.
 
-[Figures]
+<p align="center">
+    <img src="/imgs/IMG_3336-300x225.jpg">
+    <img src="/imgs/IMG_3342-300x225.jpg">
+</p>
 
 The colorful body is what geologists would call **Chinle formation**, which by itself has many layers (or members) with each layer has a different color. All members were formed about 225 millions years ago through various deposition processes. More about different layers within the Chinle formation can be found at [2].
 
@@ -38,7 +43,9 @@ An interesting fact about the basalt layer is that they actually protect the Chi
 
 The last example is a little bit different from the previous two in that it is formed by human activities instead of natural forces. The figure below is the Sunset volcano crater as the Sunset Crater National Monument. By the first glance, what immediately caught my attention was the strikingly barren south side of the crater (right side of the picture) in contrast to the north side which had much richer coverage of trees and vegetation.
 
-[Figure]
+<p align="center">
+    <img src="/imgs/Sunsetvolcano-300x225.jpg">
+</p>
 
 he question is, why is the south side so barren? Well there could only be two possibilities. First, it could be because the nature of the rocks/soil just isn’t good for trees/plants to grow. Second, the south side did have trees some time in the past, but somehow lost time over time. Which one is it?
 
