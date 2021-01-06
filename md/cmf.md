@@ -445,3 +445,27 @@ I wanted to express my gratitude to Arthur Broadbent so much. His reverse engine
 [Service 2016] The Wright - Guild Experiments and the Development of the CIE 1931 RGB and XYZ Color Spaces. https://philservice.typepad.com/Wright-Guild_and_CIE_RGB_and_XYZ.pages.pdf.
 
 [Roorda 1999] The arrangement of the three cone classes in the living human eye. Nature volume 397, pages 520–522(1999).
+
+## Notes
+
+1. These are not exact numbers, since CIE 1931 RGB CMFs are published at a 5-nm interval. I used the closest values: 545 nm for G and 435 nm for B. To obtain more accurate values, one could fit the CMFs using high-order polynomials, as is the standard practice in Colorimetry.
+
+2. The second paper is probably not officially published and is largely an expanded version of the first paper, but the second paper is written in a more approachable narrative.
+
+3. In practice, this relationship depends on the arrangement of knobs used in the experiments, and could be linear, logarithmic, or others. Theoretically, it. doesn’t matter how the knob reading and the power/luminance/amount of photons of the light let out, as long as we can experimentally record the mapping from one to the other. But since the aperture reading is a proxy of the amount of light, the linear relationship is needed to apply Grassmann’s linear law of color.
+
+4. This assumes that the aperture reading and the light power are linearly correlated as mentioned earlier, which allow us to apply Grassmann’s linear law of color.
+
+5. Actually, the numbers reported in Guild’s 1931 paper is:
+
+```
+Lʳ = 1.0000,
+Lᵍ = 4.390,
+Lᵇ = 0.048.
+```
+
+Broadbent realized that Guild made a mistake, which Guild later corrected, but Guild never published the correct results. Broadbent \[Broadbent 2004a, Broadbent 2004b\] reverse engineered the data backwards from the CIE 1931 RGB data, which is what we are using here.
+
+6. Again, this is the corrected result by Broadbent.
+
+7. The power ratio and radiance ratio is the same, given the same area and solid angle.
