@@ -100,7 +100,65 @@ The color gamut of this new D50-adapted sRGB color space is still a parallelepip
 
 Specifically, the xy chromaticities of the three primaries and the white point (D65) in [D65-adapted (i.e., the original) sRGB](https://en.wikipedia.org/wiki/SRGB) is:
 
+<table>
+  <tr>
+    <td colspan="2"><b>Red</b></td>
+    <td colspan="2"><b>Green</b></td>
+    <td colspan="2"><b>Blue</b></td>
+    <td colspan="2"><b>White (D65)</b></td>
+  </tr>
+  <tr>
+    <td>x</td>
+    <td>y</td>
+    <td>x</td>
+    <td>y</td>
+    <td>x</td>
+    <td>y</td>
+    <td>x</td>
+    <td>y</td>
+  </tr>
+  <tr>
+    <td>0.6400</td>
+    <td>0.3300</td>
+    <td>0.3000</td>
+    <td>0.6000</td>
+    <td>0.1500</td>
+    <td>0.0600</td>
+    <td>0.31271</td>
+    <td>0.32902</td>
+  </tr>
+</table>
+
 The xy chromaticities of the three primaries and the white point (D50) in [D50-adapted sRGB](https://ninedegreesbelow.com/photography/xyz-rgb.html#table2) is:
+
+<table>
+  <tr>
+    <td colspan="2"><b>Red</b></td>
+    <td colspan="2"><b>Green</b></td>
+    <td colspan="2"><b>Blue</b></td>
+    <td colspan="2"><b>White (D50)</b></td>
+  </tr>
+  <tr>
+    <td>x</td>
+    <td>y</td>
+    <td>x</td>
+    <td>y</td>
+    <td>x</td>
+    <td>y</td>
+    <td>x</td>
+    <td>y</td>
+  </tr>
+  <tr>
+    <td>0.6485</td>
+    <td>0.3308</td>
+    <td>0.3212</td>
+    <td>0.5978</td>
+    <td>0.1559</td>
+    <td>0.0660</td>
+    <td>0.34567</td>
+    <td>0.3585</td>
+  </tr>
+</table>
 
 [Figure]
 
