@@ -205,3 +205,7 @@ According to Rowlands, traditional cameras perform white balance (in raw) before
 ## 5. Summary
 
 Many real-world usecases deal with color appearance, ranging from color management to digital camera imaging. In simple terms, color appearance = colorimetry + viewing condition. Illuminant is one of the most important aspects of viewing condition. Chromatic adaptation provides a way to take into account the effect of the illuminant. When we want to specify a particular color appearance, it’s important to specify both the XYZ values and the illuminant.
+
+## Acknowledgement
+
+[Hao Xie](https://www.linkedin.com/in/hao-xie/) from RIT meticulously went through the technical details of this article. [Mike Murdoch](https://sites.google.com/view/michaeljmurdoch/) from RIT helped me better understand Apple's True Tone display. [Andrew Rowlands](http://www.andyrowlands.com/index.html) patiently answered my questions on the interactions between white balance and color correction.
