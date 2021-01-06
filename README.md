@@ -8,3 +8,6 @@ Jan 5, 2021
 
 ### [How the CIE 1931 RGB Color Matching Functions Were Developed from the Initial Color Matching Experiments](md/cmf.md)
 Aug 22, 2020
+
+### [ISCA 2019 Summary](https://www.sigarch.org/isca-2019-summary/) (appeard at [SIGARCH Blog](https://www.sigarch.org/blog/))
+Jun 11, 2019
