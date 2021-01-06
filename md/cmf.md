@@ -6,7 +6,7 @@ When examining the CIE 1931 RGB color matching functions (CMFs), a common, and v
 
 No popular graphics textbooks explain this "discrepancy." Numbers on CMFs are mostly just referred to as "weights" or "amounts." For instance, in Real-Time Rendering (4th edition), CMFs are defined as:
 
-> The functions relating each set of matching weights to the test patch wavelengths…
+> The functions relating each set of matching weights to the test patch wavelengths...
 
 Foundations of Computer Graphics (4th edition) says:
 
@@ -200,7 +200,7 @@ Here is Guild's idea. Without losing generality, let's assume that the EEW has a
 W(𝛌) = M(𝛌)(r(𝛌)R + g(𝛌)G + b(𝛌)B),
 ```
 
-where R, G, B are one unit of red, green, and blue light in the old system, r(𝛌), g(𝛌), b(𝛌) are the chromaticity coefficients of 𝛌 in the old system, and M(𝛌) is an unknown scaling factor such that M(𝛌)r(𝛌), M(𝛌)g(𝛌), and M(𝛌)b(𝛌) represent the absolute amount (in terms of the number of units) of red, blue, and green needed to match the EEW at 𝛌. Note that M(𝛌) varies with 𝛌.
+where R, G, B are one unit of red, green, and blue light in the old system, r(𝛌), g(𝛌), b(𝛌) are the chromaticity coefficients of 𝛌 in the old system, and M(𝛌) is an unknown scaling factor such that `M(𝛌)r(𝛌)`, `M(𝛌)g(𝛌)`, and `M(𝛌)b(𝛌)` represent the absolute amount (in terms of the number of units) of red, blue, and green needed to match the EEW at 𝛌. Note that M(𝛌) varies with 𝛌.
 
 Integrating over 𝛌 across the entire spectrum of EEW, we get the total amount (in the number of units) of red, blue, and green needed for EEW:
 
@@ -214,45 +214,45 @@ So the EEW could be expressed as:
 EEW = rG + gG + bB.
 ```
 
-How do we get M(𝛌)? The key idea here is to explore an invariance: at any wavelength 𝛌, the luminance of the EEW at 𝛌 should match the total luminance from the three constituting primary lights at 𝛌. This is after all how we will generate color for any arbitrary complex spectrum.
+How do we get `M(𝛌)`? The key idea here is to explore an invariance: at any wavelength 𝛌, the luminance of the EEW at 𝛌 should match the total luminance from the three constituting primary lights at 𝛌. This is after all how we will generate color for any arbitrary complex spectrum.
 
-Calculating the luminance of the EEW at a particular wavelength 𝛌 is easy: it is P x V(𝛌), where V(𝛌) is the luminance efficiency function (Guild referred to it as photopic efficacy function), which is measured by the CIE at 1924. Here we omit the constant factor (683 lm/W).
+Calculating the luminance of the EEW at a particular wavelength 𝛌 is easy: it is `P x V(𝛌)`, where V(𝛌) is the luminance efficiency function (Guild referred to it as photopic efficacy function), which is measured by the CIE at 1924. Here we omit the constant factor (683 lm/W).
 
-But how do we calculate the luminance of the primaries at wavelength 𝛌? We know the absolute amount of red, blue, and green needed at 𝛌 (i.e., M(𝛌)r(𝛌), M(𝛌)g(𝛌), and M(𝛌)b(𝛌)), but how do we relate the amount of light to the luminance of the light? The chromaticity coefficients are just ratios and do not say anything about luminance. All they say is that to create the color of any amount of the monochromatic light of a wavelength 𝛌, we need r(𝛌) : g(𝛌) : b(𝛌) amount of the primaries. Whatever that arbitrary amount is, the ratio always holds. If we want to match more amount of 𝛌, we need more amount of the primaries, and vice versa. So clearly we need something that encodes the luminance information.
+But how do we calculate the luminance of the primaries at wavelength 𝛌? We know the absolute amount of red, blue, and green needed at 𝛌 (i.e., `M(𝛌)r(𝛌)`, `M(𝛌)g(𝛌)`, and `M(𝛌)b(𝛌)`), but how do we relate the amount of light to the luminance of the light? The chromaticity coefficients are just ratios and do not say anything about luminance. All they say is that to create the color of any amount of the monochromatic light of a wavelength 𝛌, we need `r(𝛌) : g(𝛌) : b(𝛌)` amount of the primaries. Whatever that arbitrary amount is, the ratio always holds. If we want to match more amount of 𝛌, we need more amount of the primaries, and vice versa. So clearly we need something that encodes the luminance information.
 
-Here is where the notion of luminance coefficients comes into play. Luminance coefficient of a light in a particular system is defined as the luminance of one unit of the light. We usually scale the luminance coefficients of the three primary colors such that the coefficient is 1 for the red primary. In Guild's experiment, he measured and calculated that the luminance coefficients of the three NPL standard primaries, Lʳ, Lᵍ, and Lᵇ, as the following⁵:
+Here is where the notion of luminance coefficients comes into play. Luminance coefficient of a light in a particular system is defined as the luminance of one unit of the light. We usually scale the luminance coefficients of the three primary colors such that the coefficient is 1 for the red primary. In Guild's experiment, he measured and calculated that the luminance coefficients of the three NPL standard primaries, L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup>, as the following⁵:
 
-```
-Lʳ = 1.0000,
-Lᵍ = 4.4036,
-Lᵇ = 0.0471.
-```
+<code>
+L<sup>r</sup> = 1.0000,
+L<sup>g</sup> = 4.4036,
+L<sup>b</sup> = 0.0471.
+</code>
 
 The total luminance of red, green, and blue at 𝛌 is thus:
 
-```
-M(𝛌)r(𝛌)LʳN + M(𝛌)g(𝛌)LᵍN + M(𝛌)b(𝛌)LᵇN,
-```
+<code>
+M(𝛌)r(𝛌)L<sup>r</sup>N + M(𝛌)g(𝛌)L<sup>g</sup>N + M(𝛌)b(𝛌)L<sup>b</sup>N,
+</code>
 
-where N is an unknown scaling factor.
+where `N` is an unknown scaling factor.
 Thus we have:
 
-```
-V(𝛌)P = M(𝛌)r(𝛌)LʳN + M(𝛌)g(𝛌)LᵍN + M(𝛌)b(𝛌)LᵇN.
-```
+<code>
+V(𝛌)P = M(𝛌)r(𝛌)L<sup>r</sup>N + M(𝛌)g(𝛌)L<sup>g</sup>N + M(𝛌)b(𝛌)L<sup>b</sup>N.
+</code>
 
-Therefore, M(𝛌) is calculated as:
+Therefore, `M(𝛌)` is calculated as:
 
-```
-M(𝛌) = V(𝛌)P / N(r(𝛌)Lʳ+ g(𝛌)Lᵍ + b(𝛌)Lᵇ).
-```
+<code>
+M(𝛌) = V(𝛌)P / N(r(𝛌)L<sup>r</sup>+ g(𝛌)L<sup>g</sup> + b(𝛌)L<sup>b</sup>).
+</code>
 
-Here, V(𝛌), r(𝛌), g(𝛌), b(𝛌), Lʳ, Lᵍ, Lᵇ are all known. P/N is an unknown scaling factor.
+Here, `V(𝛌)`, `r(𝛌)`, `g(𝛌)`, `b(𝛌)`, L<sup>r</sup>, L<sup>g</sup>, L<sup>b</sup> are all known. `P/N` is an unknown scaling factor.
 Without losing generality, let:
 
-```
-U(𝛌) = V(𝛌) / (r(𝛌)Lʳ+ g(𝛌)Lᵍ + b(𝛌)Lᵇ),
-```
+<code>
+U(𝛌) = V(𝛌) / (r(𝛌)L<sup>r</sup>+ g(𝛌)L<sup>g</sup> + b(𝛌)L<sup>b</sup>),
+</code>
 
 and `P/N = C`. We have:
 
@@ -277,22 +277,22 @@ EEW = C∑U(𝛌)r(𝛌) R + C∑U(𝛌)g(𝛌) G + C∑U(𝛌)b(𝛌) B.
 Therefore, the chromaticity of the EEW in the old unit system is:
 
 ```
-Wr = ∑U(𝛌)r(𝛌) / (∑U(𝛌)r(𝛌) + ∑U(𝛌)g(𝛌) + ∑U(𝛌)b(𝛌)),
-Wg = ∑U(𝛌)g(𝛌) / (∑U(𝛌)r(𝛌) + ∑U(𝛌)g(𝛌) + ∑U(𝛌)b(𝛌)),
-Wb = ∑U(𝛌)b(𝛌) / (∑U(𝛌)r(𝛌) + ∑U(𝛌)g(𝛌) + ∑U(𝛌)b(𝛌)).
+W<sub>r</sub> = ∑U(𝛌)r(𝛌) / (∑U(𝛌)r(𝛌) + ∑U(𝛌)g(𝛌) + ∑U(𝛌)b(𝛌)),
+W<sub>g</sub> = ∑U(𝛌)g(𝛌) / (∑U(𝛌)r(𝛌) + ∑U(𝛌)g(𝛌) + ∑U(𝛌)b(𝛌)),
+W<sub>b</sub> = ∑U(𝛌)b(𝛌) / (∑U(𝛌)r(𝛌) + ∑U(𝛌)g(𝛌) + ∑U(𝛌)b(𝛌)).
 ```
 
-As you can see, the unknown scaling factor C (i.e., P/N) is irrelevant here. The exact values of Wr, Wg, and Wb are 0.3013, 0.3140, and 0.3847 as calculated by Guild⁶.
+As you can see, the unknown scaling factor `C` (i.e., `P/N`) is irrelevant here. The exact values of W<sub>r</sub>, W<sub>g</sub>, and W<sub>b</sub> are `0.3013`, `0.3140`, and `0.3847` as calculated by Guild⁶.
 
-This is a significant result, as we now know that the EEW in the old unit system is mixed by red, blue, and green in a Wr: Wg: Wb ratio. We also know that, by definition, the EEW in the new unit system should be mixed with a 1:1:1 ratio. Now the problem essentially falls back to the thought experiment we had before! Using the same method there, we can translate the chromaticity coefficients of any spectral light from the old unit system (i.e., the NPL standard white as the reference white) to the new unit system (i.e., the EEW as the reference white).
+This is a significant result, as we now know that the EEW in the old unit system is mixed by red, blue, and green in a W<sub>r</sub>: W<sub>g</sub>: W<sub>b</sub> ratio. We also know that, by definition, the EEW in the new unit system should be mixed with a 1:1:1 ratio. Now the problem essentially falls back to the thought experiment we had before! Using the same method there, we can translate the chromaticity coefficients of any spectral light from the old unit system (i.e., the NPL standard white as the reference white) to the new unit system (i.e., the EEW as the reference white).
 
 One last thing, the luminance coefficients in the new unit system also have to change. The luminance coefficient represents the relative luminance of one unit of light. Since we have changed what one unit means in a new system, the luminance coefficient would certainly have to change. How to calculate that? One unit of red in the new system is equivalent to Wr units of red in the old system, which has a total luminance of Wr·Lʳ, which becomes the luminance of one unit of red in the new system. The same process applies to the green and blue primaries as well. Normalizing the values to red, the exact values of the new luminance coefficients are the following, which will be used to construct the CMFs:
 
-```
-Lʳ = 1.0000,
-Lᵍ = 4.5907,
-Lᵇ = 0.0601.
-```
+<code>
+L<sup>r</sup> = 1.0000,
+L<sup>g</sup> = 4.5907,
+L<sup>b</sup> = 0.0601.
+</code>
 
 So let's recap. What we have calculated so far is the chromaticity coefficients for all the spectral light, assuming the NPL primaries as the primary lights and the EEW as the reference white and a unit system that equal amounts of primary lights produce some amount of reference white, which are the exact same setup as the CIE 1931 standard.
 
@@ -321,41 +321,41 @@ The power of the target light T at 𝛌 is 𝚽(𝛌). Since matching the lumina
 
 As a result, to match the entire target light, we need ∑𝚽(𝛌)R(𝛌) units of red, ∑𝚽(𝛌)G(𝛌) units of green, and ∑𝚽(𝛌)B(𝛌) units of blue. If you have a continuous SPD rather than discrete samples, we get the following familiar equations:
 
-```
-Rt = ∫𝚽(𝛌)R(𝛌) d𝛌,
-Gt = ∫𝚽(𝛌)G(𝛌) d𝛌,
-Bt = ∫𝚽(𝛌)B(𝛌) d𝛌.
-```
+<code>
+R<sub>t</sub> = ∫𝚽(𝛌)R(𝛌) d𝛌,
+G<sub>t</sub> = ∫𝚽(𝛌)G(𝛌) d𝛌,
+B<sub>t</sub> = ∫𝚽(𝛌)B(𝛌) d𝛌.
+</code>
 
-Rt, Gt, and Bt are the absolute amount of red, green, and blue needed to match the color of target light T with a SPD 𝚽. The ratio of Rt, Gt, and Bt are the chromaticity coefficients of the target light T, i.e., the amount of red, blue, and green needed to produce one unit of T. In modern terminology, Rt, Gt, and Bt are the tristimulus values of T.
+R<sub>t</sub>, G<sub>t</sub>, and B<sub>t</sub> are the absolute amount of red, green, and blue needed to match the color of target light T with a SPD 𝚽. The ratio of R<sub>t</sub>, G<sub>t</sub>, and B<sub>t</sub> are the chromaticity coefficients of the target light T, i.e., the amount of red, blue, and green needed to produce one unit of T. In modern terminology, R<sub>t</sub>, G<sub>t</sub>, and B<sub>t</sub> are the tristimulus values of T.
 
 ### 5.2 How to Construct the CMFs?
 
 Now we can use the CMFs to generate colors, the next question is how do we construct the CMFs?
 
-Remember that the chromaticity coefficients r(𝛌), g(𝛌), and b(𝛌) tell us in what ratio we should mix the primaries in order to get one unit of the monochromatic light 𝛌. Now assume that to match the luminance of 1 unit power of a monochromatic light 𝛌 we need k(𝛌)r(𝛌), k(𝛌)g(𝛌), and k(𝛌)b(𝛌) units of the primaries. Note that we need to maintain the r(𝛌) : g(𝛌) : b(𝛌) ratio to retain the chromaticity of the monochromatic light 𝛌.
+Remember that the chromaticity coefficients r(𝛌), g(𝛌), and b(𝛌) tell us in what ratio we should mix the primaries in order to get one unit of the monochromatic light 𝛌. Now assume that to match the luminance of 1 unit power of a monochromatic light 𝛌 we need `k(𝛌)r(𝛌)`, `k(𝛌)g(𝛌)`, and `k(𝛌)b(𝛌)` units of the primaries. Note that we need to maintain the `r(𝛌) : g(𝛌) : b(𝛌)` ratio to retain the chromaticity of the monochromatic light 𝛌.
 
-The luminance of one unit power of the monochromatic light 𝛌 is V(𝛌). The total luminance given by the the primaries at 𝛌 is Lʳk(𝛌)r(𝛌) + Lᵍk(𝛌)g(𝛌) + Lᵇk(𝛌)b(𝛌). Therefore,
+The luminance of one unit power of the monochromatic light 𝛌 is V(𝛌). The total luminance given by the the primaries at 𝛌 is <code>L<sup>r</sup>k(𝛌)r(𝛌) + L<sup>g</sup>k(𝛌)g(𝛌) + L<sup>b</sup>k(𝛌)b(𝛌)</code>. Therefore,
 
-```
-V(𝛌) = Lʳk(𝛌)r(𝛌) + Lᵍk(𝛌)g(𝛌) + Lᵇk(𝛌)b(𝛌),
-```
+<code>
+V(𝛌) = L<sup>r</sup>k(𝛌)r(𝛌) + L<sup>g</sup>k(𝛌)g(𝛌) + L<sup>b</sup>k(𝛌)b(𝛌),
+</code>
 
 which allows us to calculate k(𝛌):
 
-```
-k(𝛌) = V(𝛌) / (Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(𝛌)).
-```
+<code>
+k(𝛌) = V(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)).
+</code>
 
-The denominator, Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(𝛌), could be seen as the luminance coefficient of the monochromatic light of a wavelength 𝛌, which is an instance of applying the linear system assumption to the luminance coefficient.
+The denominator, L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌), could be seen as the luminance coefficient of the monochromatic light of a wavelength 𝛌, which is an instance of applying the linear system assumption to the luminance coefficient.
 
 With k(𝛌), we get the three CMFs:
 
-```
-R(𝛌) = k(𝛌)r(𝛌) = V(𝛌)r(𝛌) / (Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(𝛌)),
-G(𝛌) = k(𝛌)g(𝛌) = V(𝛌)g(𝛌) / (Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(𝛌)),
-B(𝛌) = k(𝛌)b(𝛌) = V(𝛌)b(𝛌) / (Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(𝛌)).
-```
+<code>
+R(𝛌) = k(𝛌)r(𝛌) = V(𝛌)r(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)),
+G(𝛌) = k(𝛌)g(𝛌) = V(𝛌)g(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)),
+B(𝛌) = k(𝛌)b(𝛌) = V(𝛌)b(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)).
+</code>
 
 The CMFs can be seen as scaled from the original r(𝛌), g(𝛌), and b(𝛌). Note that k(𝛌) is a function of 𝛌, not a constant. These are the CMFs for CIE 1931 RGB.
 
@@ -364,7 +364,7 @@ The CMFs can be seen as scaled from the original r(𝛌), g(𝛌), and b(𝛌). 
     <figcaption><b>Figure 6: CIE CMFs (solid) and CMFs using Wright-Guild data, where the reference white is the NPL standard white rather than the EEW.</b></figcaption>
 </p>
 
-An important attribute of the CMFs is that they depend on the primary colors as well as the reference white light. The fact that it depends on the reference white is often ignored but an important one! This is because the reference white will decide what "one unit" means for the primary colors, and thus affect r(𝛌), g(𝛌), b(𝛌), Lʳ, Lᵍ, Lᵇ.
+An important attribute of the CMFs is that they depend on the primary colors as well as the reference white light. The fact that it depends on the reference white is often ignored but an important one! This is because the reference white will decide what "one unit" means for the primary colors, and thus affect r(𝛌), g(𝛌), b(𝛌), L<sup>r</sup>, L<sup>g</sup>, L<sup>b</sup>.
 
 Figure 6 shows the CIE 1931 RGB CMFs (solid curves), and as a comparison, we also overlay the CMFs if the combined Wright-Guild data was used (dotted curves), i.e., using the NPL standard white as the reference white rather than the EEW. As we can see, while the trends are similar, the CMFs in the two systems are different. This illustrates that the CMFs are indeed dependent on the choice of the reference white.
 
@@ -382,32 +382,32 @@ Since in the EEW 𝚽(𝛌) is 1 (constant) everywhere, we have:
 ∫R(𝛌)d𝛌 = ∫G(𝛌)d𝛌 = ∫B(𝛌)d𝛌
 ```
 
-These integrations represent the area under the CMF curves. This is why the Wikipedia page cited at the very beginning says "Note that rather than specify the brightness of each primary, the curves are normalized to have constant area beneath them."
+These integrations represent the area under the CMF curves. This is why the Wikipedia page cited at the very beginning says "*Note that rather than specify the brightness of each primary, the curves are normalized to have constant area beneath them.*"
 
-2. By definition, for any 𝛌, we have V(𝛌) = LʳR(𝛌) + LᵍG(𝛌) + LᵇB(𝛌). Both sides of the equation represent the luminance of 1 W monochromatic light at 𝛌.
+2. By definition, for any 𝛌, we have <code>V(𝛌) = L<sup>r</sup>R(𝛌) + L<sup>g</sup>G(𝛌) + L<sup>b</sup>B(𝛌)</code>. Both sides of the equation represent the luminance of 1 W monochromatic light at 𝛌.
 
 Integrate both sides:
 
 ```
-∫V(𝛌)d𝛌 = ∫LʳR(𝛌)d𝛌 + ∫LᵍG(𝛌)d𝛌 + ∫LᵇB(𝛌)d𝛌
-        = Lʳ∫R(𝛌)d𝛌 + Lᵍ∫G(𝛌)d𝛌 + Lᵇ∫B(𝛌)d𝛌
+∫V(𝛌)d𝛌 = ∫L<sup>r</sup>R(𝛌)d𝛌 + ∫L<sup>g</sup>G(𝛌)d𝛌 + ∫L<sup>b</sup>B(𝛌)d𝛌
+        = L<sup>r</sup>∫R(𝛌)d𝛌 + L<sup>g</sup>∫G(𝛌)d𝛌 + L<sup>b</sup>∫B(𝛌)d𝛌
 ```
 
 Since `∫R(𝛌)d𝛌 = ∫G(𝛌)d𝛌 = ∫B(𝛌)d𝛌`, we have:
 
 ```
-∫R(𝛌)d𝛌 = ∫G(𝛌)d𝛌 = ∫B(𝛌)d𝛌 = ∫V(𝛌)d𝛌/(Lʳ + Lᵍ+ Lᵇ),
+∫R(𝛌)d𝛌 = ∫G(𝛌)d𝛌 = ∫B(𝛌)d𝛌 = ∫V(𝛌)d𝛌/(L<sup>r</sup> + L<sup>g</sup>+ L<sup>b</sup>),
 ```
 
-Not only the areas under the three CMF curves are the same, their absolute area is the area under V(𝛌) scaled by 1/(Lʳ + Lᵍ+ Lᵇ).
+Not only the areas under the three CMF curves are the same, their absolute area is the area under V(𝛌) scaled by <code>1/(L<sup>r</sup> + L<sup>g</sup>+ L<sup>b</sup>)</code>.
 
 3. Today the spectral chromaticity coefficients of the CIE 1931 RGB space are calculated based on the CMFs R(𝛌), G(𝛌), and B(𝛌). But as we have seen, Guild and Wright had first calculated the spectral chromaticity coefficients r(𝛌), g(𝛌), and b(𝛌), from which the CMFs are derived. Does calculating the spectral chromaticity coefficients from the CMFs change the actual spectral chromaticity coefficients?
 
-No. As we can see from this Equation, R(𝛌) : G(𝛌): B(𝛌) is the same as r(𝛌) : g(𝛌) : b(𝛌). The former merely scales the latter by k(𝛌), which is the same for a given 𝛌.
+No. As we can see from this Equation, `R(𝛌) : G(𝛌): B(𝛌)` is the same as `r(𝛌) : g(𝛌) : b(𝛌)`. The former merely scales the latter by k(𝛌), which is the same for a given 𝛌.
 
-4. The Lʳ, Lᵍ, and Lᵇ in the CIE 1931 standard are 1.000, 4.5907, and 0.0601 as calculated in this Equation. That's why the Wikipedia page says "*The resulting normalized color matching functions are then scaled in the r:g:b ratio of 1:4.5907:0.0601 for source luminance...*"
+4. The L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup> in the CIE 1931 standard are 1.000, 4.5907, and 0.0601 as calculated in this Equation. That's why the Wikipedia page says "*The resulting normalized color matching functions are then scaled in the r:g:b ratio of 1:4.5907:0.0601 for source luminance...*"
 
-What it really means is that 𝚽(𝛌)LʳR(𝛌), 𝚽(𝛌)LᵍG(𝛌), and 𝚽(𝛌)LᵇB(𝛌) represent the luminance of red, green, and blue needed to match the luminance of 𝚽(𝛌).
+What it really means is that 𝚽(𝛌)L<sup>r</sup>R(𝛌), 𝚽(𝛌)L<sup>g</sup>G(𝛌), and 𝚽(𝛌)L<sup>b</sup>B(𝛌) represent the luminance of red, green, and blue needed to match the luminance of 𝚽(𝛌).
 
 <p align="center">
     <img src="/imgs/luminance.png">
@@ -416,13 +416,13 @@ What it really means is that 𝚽(𝛌)LʳR(𝛌), 𝚽(𝛌)LᵍG(𝛌), and �
 
 Figure 7 plots the luminance of the EEW and the three primaries. As we can see, blue contributes very little to the luminance, which shouldn't be too surprising in that the amount of S cones is only about 2% - 7% on the retina [Roorda 1999].
 
-5. We know that LʳR(𝛌), LᵍG(𝛌), and LᵇB(𝛌) represent the luminance of red, green, and blue in matching the luminance of 1 W of the monochromatic light 𝛌. How about the power of each primary in matching the luminance of 1 W of the monochromatic light 𝛌?
+5. We know that L<sup>r</sup>R(𝛌), L<sup>g</sup>G(𝛌), and L<sup>b</sup>B(𝛌) represent the luminance of red, green, and blue in matching the luminance of 1 W of the monochromatic light 𝛌. How about the power of each primary in matching the luminance of 1 W of the monochromatic light 𝛌?
 
-The power of red light is LʳR(𝛌)/V(700), which is scaled from R(𝛌) by a factor of Lʳ/V(700). Similarly, to calculate the power of green and blue, we scale G(𝛌) and B(𝛌) by Lᵍ/V(546.1) and Lᵇ/V(435.8). The relative ratio Lʳ/V(700) : Lᵍ/V(546.1) : Lᵇ/V(435.8) is 72.0962 : 1.3791 : 1 when normalized.
+The power of red light is <code>L<sup>r</sup>R(𝛌)/V(700)</code>, which is scaled from R(𝛌) by a factor of <code>L<sup>r</sup>/V(700)</code>. Similarly, to calculate the power of green and blue, we scale G(𝛌) and B(𝛌) by <code>L<sup>g</sup>/V(546.1)</code> and <code>L<sup>b</sup>/V(435.8)</code>. The relative ratio <code>L<sup>r</sup>/V(700) : L<sup>g</sup>/V(546.1) : L<sup>b</sup>/V(435.8)</code> is `72.0962 : 1.3791 : 1` when normalized.
 
-This is why the Wikipedia page says "The resulting normalized color matching functions are then scaled in the r:g:b ratio of … 72.0962:1.3791:1 for source radiance." What this really means is that when red, green, and blue light are mixed to match the luminance of 1 W of the monochromatic light 𝛌, their relative power ratio 72.0962R(𝛌) : 1.3791G(𝛌) : B(𝛌)⁷.
+This is why the Wikipedia page says "*The resulting normalized color matching functions are then scaled in the r:g:b ratio of ... 72.0962 : 1.3791 : 1 for source radiance.*" What this really means is that when red, green, and blue light are mixed to match the luminance of 1 W of the monochromatic light 𝛌, their relative power ratio `72.0962R(𝛌) : 1.3791G(𝛌) : B(𝛌)`⁷.
 
-6. Here is one accurate way to calculate the luminance coefficients Lʳ, Lᵍ, and Lᵇ even if they are not given. Since the reference white should have the same tristimulus values:
+6. Here is one accurate way to calculate the luminance coefficients L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup> even if they are not given. Since the reference white should have the same tristimulus values:
 
 ```
 ∫𝚽(𝛌)R(𝛌)d𝛌 = ∫𝚽(𝛌)G(𝛌)d𝛌 = ∫𝚽(𝛌)B(𝛌)d𝛌.
@@ -434,17 +434,17 @@ If we sample the SPD at enough points, the integration becomes a summation:
 ∑𝚽(𝛌)k(𝛌)r(𝛌) = ∑𝚽(𝛌)k(𝛌)g(𝛌) = ∑𝚽(𝛌)k(𝛌)g(𝛌),
 ```
 
-Plugging in `k(𝛌) = V(𝛌) / (Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(𝛌))`:
+Plugging in <code>k(𝛌) = V(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌))</code>:
 
-```
-∑V(𝛌)𝚽(𝛌)r(𝛌) / (Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(𝛌)) =
-∑V(𝛌)𝚽(𝛌)g(𝛌) / (Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(𝛌)) =
-∑V(𝛌)𝚽(𝛌)b(𝛌) / (Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(𝛌)),
-```
+<code>
+∑V(𝛌)𝚽(𝛌)r(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)) =
+∑V(𝛌)𝚽(𝛌)g(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)) =
+∑V(𝛌)𝚽(𝛌)b(𝛌) / (L<sup>r</sup>r(𝛌) + L<sup>g</sup>g(𝛌) + L<sup>b</sup>b(𝛌)),
+<code>
 
-where V(𝛌), 𝚽(𝛌), r(𝛌), g(𝛌), and b(𝛌) are all known. So we have three variables Lʳ, Lᵍ, and Lᵇ, and two equations, which should allow us to get the ratios of the variables.
+where V(𝛌), 𝚽(𝛌), r(𝛌), g(𝛌), and b(𝛌) are all known. So we have three variables L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup>, and two equations, which should allow us to get the ratios of the variables.
 
-From how CIE XYZ data was generated from CIE RGB [Fairman 1997], it looks like this fitting method was actually what was done to get the Lʳ, Lᵍ, and Lᵇ, rather than using the transformed data from the original Wright-Guild experiments.
+From how CIE XYZ data was generated from CIE RGB [Fairman 1997], it looks like this fitting method was actually what was done to get the L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup>, rather than using the transformed data from the original Wright-Guild experiments.
 
 ## 6. Acknowledgement
 
@@ -480,11 +480,11 @@ I wanted to express my gratitude to Arthur Broadbent so much. His reverse engine
 
 5. Actually, the numbers reported in Guild’s 1931 paper is:
 
-```
-Lʳ = 1.0000,
-Lᵍ = 4.390,
-Lᵇ = 0.048.
-```
+<code>
+L<sup>r</sup> = 1.0000,
+L<sup>g</sup> = 4.390,
+L<sup>b</sup> = 0.048.
+</code>
 
 Broadbent realized that Guild made a mistake, which Guild later corrected, but Guild never published the correct results. Broadbent \[Broadbent 2004a, Broadbent 2004b\] reverse engineered the data backwards from the CIE 1931 RGB data, which is what we are using here.
 
