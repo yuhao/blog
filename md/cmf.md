@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-When examining the CIE 1931 RGB color matching functions (CMFs), a common, and very reasonable, doubt is: why don't the CMFs take the value of 1 at the wavelengths of the primaries? For instance, at 𝛌 = 700 nm, which is the red primary used in the CIE 1931 RGB space, the R value is 0.0041 (of course the G and B values are 0). What does 0.0041 mean? Shouldn't it be 1 since we need 1 unit of red (𝛌 = 700nm) to match the color of 1 unit of red (𝛌 = 700nm)? Similarly, at 𝛌 = 546.1 nm and 𝛌 = 435.8 nm, which are the green and blue primaries, respectively, used in the CIE 1931 standard, the G and B values are about 0.215 and 0.291, respectively¹; they are not 1 either.
+When examining the CIE 1931 RGB color matching functions (CMFs), a common, and very reasonable, doubt is: why don't the CMFs take the value of 1 at the wavelengths of the primaries? For instance, at 𝛌 = 700 nm, which is the red primary used in the CIE 1931 RGB space, the R value is 0.0041 (of course the G and B values are 0). What does 0.0041 mean? Shouldn't it be 1 since we need 1 unit of red (𝛌 = 700nm) to match the color of 1 unit of red (𝛌 = 700nm)? Similarly, at 𝛌 = 546.1 nm and 𝛌 = 435.8 nm, which are the green and blue primaries, respectively, used in the CIE 1931 standard, the G and B values are about 0.215 and 0.291, respectively<sup id="a1">[1](#f1)</sup>; they are not 1 either.
 
 No popular graphics textbooks explain this "discrepancy." Numbers on CMFs are mostly just referred to as "weights" or "amounts." For instance, in Real-Time Rendering (4th edition), CMFs are defined as:
 
@@ -29,7 +29,7 @@ These remarks are helpful, as they show that some sort of scaling and normalizat
 
 These questions could only be answered by going back to the original color matching experiments (now almost 1 century ago) and understanding how the initial experimental data was obtained and subsequently processed to become the 1931 RGB CMFs that we are seeing and using today.
 
-This haunted me for a few days, especially because I wasn't able to find much information about the original experimental data. Then I came across two papers² by Arthur Broadbent [Broadbent 2004a, Broadbent 2004b], who meticulously documented and, in places where the original data is missing, reverse-engineered the truly remarkable process in which the initial color matching experimental data was transformed before being used to construct the CIE 1931 RGB CMFs. Understanding the transformation not only provides historical context, but more importantly allows us to really understand what exactly a CMF is.
+This haunted me for a few days, especially because I wasn't able to find much information about the original experimental data. Then I came across two papers<sup id="a2">[2](#f2)</sup> by Arthur Broadbent [Broadbent 2004a, Broadbent 2004b], who meticulously documented and, in places where the original data is missing, reverse-engineered the truly remarkable process in which the initial color matching experimental data was transformed before being used to construct the CIE 1931 RGB CMFs. Understanding the transformation not only provides historical context, but more importantly allows us to really understand what exactly a CMF is.
 
 ## 2. History
 
@@ -69,11 +69,11 @@ He then elaborated with an example:
 >
 > `c = .571R + .286G + .143B`
 
-In this example, the actual power of light is controlled by an aperture. Importantly, the relationship between the aperture reading (its angle) and the actual power of the light let out is linear, as the amount of photons let out should be linearly proportional to the area exposed by the aperture, which is linearly proportional to the angle³.
+In this example, the actual power of light is controlled by an aperture. Importantly, the relationship between the aperture reading (its angle) and the actual power of the light let out is linear, as the amount of photons let out should be linearly proportional to the area exposed by the aperture, which is linearly proportional to the angle<sup id="a3">[3](#f3)</sup>.
 
 To match white, the aperture is set to be 30° for red, 15° for green, and 60° for blue; we then make an executive call and say that this is the same amount of red, green, and blue. That is, one unit of red is the amount of red light that is let out when the aperture reading is 30°; one unit of green is the amount of green light that is let out when the aperture reading is 15°; one unit of blue is the amount of blue light that is let out when the aperture reading is 60°.
 
-Once we define the units of the primary lights, we can then determine the amounts (i.e., how many units) of primary lights required to match any test light. In Wright's example, for a new color, say C, the aperture readings are 40° for red, 10° for green, and 20° for blue; we then know that we need 40/30 units of red, 10/15 for green, and 20/60 for blue to match C⁴. These unit amounts translate to a 4:2:1 ratio.
+Once we define the units of the primary lights, we can then determine the amounts (i.e., how many units) of primary lights required to match any test light. In Wright's example, for a new color, say C, the aperture readings are 40° for red, 10° for green, and 20° for blue; we then know that we need 40/30 units of red, 10/15 for green, and 20/60 for blue to match C<sup id="a4">[4](#f4)</sup>. These unit amounts translate to a 4:2:1 ratio.
 
 Note that at this point we don't know how much light there is in C. We just know that 40/30 units of red, 10/15 for green, and 20/60 for blue gets us some amount of light C.
 
@@ -136,6 +136,7 @@ C = 0.571k R' + 0.286(2k) G' + 0.143(3k) B'.
 ```
 
 Normalizing the units so that they add up to 1 gets us the definition of one unit of C in the new unit system:
+
 
 ```
 C = 0.571k/(0.571k + 0.286(2k) + 0.143(3k)) R' +
@@ -222,7 +223,7 @@ Calculating the luminance of the EEW at a particular wavelength 𝛌 is easy: it
 
 But how do we calculate the luminance of the primaries at wavelength 𝛌? We know the absolute amount of red, blue, and green needed at 𝛌 (i.e., `M(𝛌)r(𝛌)`, `M(𝛌)g(𝛌)`, and `M(𝛌)b(𝛌)`), but how do we relate the amount of light to the luminance of the light? The chromaticity coefficients are just ratios and do not say anything about luminance. All they say is that to create the color of any amount of the monochromatic light of a wavelength 𝛌, we need `r(𝛌) : g(𝛌) : b(𝛌)` amount of the primaries. Whatever that arbitrary amount is, the ratio always holds. If we want to match more amount of 𝛌, we need more amount of the primaries, and vice versa. So clearly we need something that encodes the luminance information.
 
-Here is where the notion of luminance coefficients comes into play. Luminance coefficient of a light in a particular system is defined as the luminance of one unit of the light. We usually scale the luminance coefficients of the three primary colors such that the coefficient is 1 for the red primary. In Guild's experiment, he measured and calculated that the luminance coefficients of the three NPL standard primaries, L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup>, as the following⁵:
+Here is where the notion of luminance coefficients comes into play. Luminance coefficient of a light in a particular system is defined as the luminance of one unit of the light. We usually scale the luminance coefficients of the three primary colors such that the coefficient is 1 for the red primary. In Guild's experiment, he measured and calculated that the luminance coefficients of the three NPL standard primaries, L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup>, as the following<sup id="a5">[5](#f5)</sup>:
 
 ```
 Lʳ = 1.0000,
@@ -284,7 +285,7 @@ Therefore, the chromaticity of the EEW in the old unit system is:
 
 <code>W<sub>b</sub> = ∑U(𝛌)b(𝛌) / (∑U(𝛌)r(𝛌) + ∑U(𝛌)g(𝛌) + ∑U(𝛌)b(𝛌))</code>.
 
-As you can see, the unknown scaling factor `C` (i.e., `P/N`) is irrelevant here. The exact values of W<sub>r</sub>, W<sub>g</sub>, and W<sub>b</sub> are `0.3013`, `0.3140`, and `0.3847` as calculated by Guild⁶.
+As you can see, the unknown scaling factor `C` (i.e., `P/N`) is irrelevant here. The exact values of W<sub>r</sub>, W<sub>g</sub>, and W<sub>b</sub> are `0.3013`, `0.3140`, and `0.3847` as calculated by Guild<sup id="a6">[6](#f6)</sup>.
 
 This is a significant result, as we now know that the EEW in the old unit system is mixed by red, blue, and green in a W<sub>r</sub>: W<sub>g</sub>: W<sub>b</sub> ratio. We also know that, by definition, the EEW in the new unit system should be mixed with a 1:1:1 ratio. Now the problem essentially falls back to the thought experiment we had before! Using the same method there, we can translate the chromaticity coefficients of any spectral light from the old unit system (i.e., the NPL standard white as the reference white) to the new unit system (i.e., the EEW as the reference white).
 
@@ -406,7 +407,7 @@ No. As we can see from this Equation, `R(𝛌) : G(𝛌): B(𝛌)` is the same 
 
 4, The L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup> in the CIE 1931 standard are 1.000, 4.5907, and 0.0601 as calculated in this Equation. That's why the Wikipedia page says "*The resulting normalized color matching functions are then scaled in the r:g:b ratio of `1 : 4.5907 : 0.0601` for source luminance...*"
 
-What it really means is that 𝚽(𝛌)L<sup>r</sup>R(𝛌), 𝚽(𝛌)L<sup>g</sup>G(𝛌), and 𝚽(𝛌)L<sup>b</sup>B(𝛌) represent the luminance of red, green, and blue needed to match the luminance of 𝚽(𝛌).
+What it really means is that <code>𝚽(𝛌)L<sup>r</sup>R(𝛌)</code>, <code>𝚽(𝛌)L<sup>g</sup>G(𝛌)</code>, and <code>𝚽(𝛌)L<sup>b</sup>B(𝛌)</code> represent the luminance of red, green, and blue needed to match the luminance of 𝚽(𝛌).
 
 <p align="center">
     <img src="/imgs/luminance.png">
@@ -419,7 +420,7 @@ Figure 7 plots the luminance of the EEW and the three primaries. As we can see, 
 
 The power of red light is <code>L<sup>r</sup>R(𝛌)/V(700)</code>, which is scaled from R(𝛌) by a factor of <code>L<sup>r</sup>/V(700)</code>. Similarly, to calculate the power of green and blue, we scale G(𝛌) and B(𝛌) by <code>L<sup>g</sup>/V(546.1)</code> and <code>L<sup>b</sup>/V(435.8)</code>. The relative ratio <code>L<sup>r</sup>/V(700) : L<sup>g</sup>/V(546.1) : L<sup>b</sup>/V(435.8)</code> is `72.0962 : 1.3791 : 1` when normalized.
 
-This is why the Wikipedia page says "*The resulting normalized color matching functions are then scaled in the r:g:b ratio of ... 72.0962 : 1.3791 : 1 for source radiance.*" What this really means is that when red, green, and blue light are mixed to match the luminance of 1 W of the monochromatic light 𝛌, their relative power ratio `72.0962R(𝛌) : 1.3791G(𝛌) : B(𝛌)`⁷.
+This is why the Wikipedia page says "*The resulting normalized color matching functions are then scaled in the r:g:b ratio of ... 72.0962 : 1.3791 : 1 for source radiance.*" What this really means is that when red, green, and blue light are mixed to match the luminance of 1 W of the monochromatic light 𝛌, their relative power ratio `72.0962R(𝛌) : 1.3791G(𝛌) : B(𝛌)`<sup id="a7">[7](#f7)</sup>.
 
 6, Here is one accurate way to calculate the luminance coefficients L<sup>r</sup>, L<sup>g</sup>, and L<sup>b</sup> even if they are not given. Since the reference white should have the same tristimulus values:
 
@@ -469,16 +470,19 @@ I wanted to express my gratitude to Arthur Broadbent so much. His reverse engine
 
 ## Notes
 
-1. These are not exact numbers, since CIE 1931 RGB CMFs are published at a 5-nm interval. I used the closest values: 545 nm for G and 435 nm for B. To obtain more accurate values, one could fit the CMFs using high-order polynomials, as is the standard practice in Colorimetry.
+<!---
+https://stackoverflow.com/questions/25579868/how-to-add-footnotes-to-github-flavoured-markdown
+--->
+<b id="f1">1</b> These are not exact numbers, since CIE 1931 RGB CMFs are published at a 5-nm interval. I used the closest values: 545 nm for G and 435 nm for B. To obtain more accurate values, one could fit the CMFs using high-order polynomials, as is the standard practice in Colorimetry. [&leftarrow;](#a1)
 
-2. The second paper is probably not officially published and is largely an expanded version of the first paper, but the second paper is written in a more approachable narrative.
+<b id="f2">2</b> The second paper is probably not officially published and is largely an expanded version of the first paper, but the second paper is written in a more approachable narrative. [&leftarrow;](#a2)
 
-3. In practice, this relationship depends on the arrangement of knobs used in the experiments, and could be linear, logarithmic, or others. Theoretically, it. doesn’t matter how the knob reading and the power/luminance/amount of photons of the light let out, as long as we can experimentally record the mapping from one to the other. But since the aperture reading is a proxy of the amount of light, the linear relationship is needed to apply Grassmann’s linear law of color.
+<b id="f3">3</b> In practice, this relationship depends on the arrangement of knobs used in the experiments, and could be linear, logarithmic, or others. Theoretically, it. doesn’t matter how the knob reading and the power/luminance/amount of photons of the light let out, as long as we can experimentally record the mapping from one to the other. But since the aperture reading is a proxy of the amount of light, the linear relationship is needed to apply Grassmann’s linear law of color. [&leftarrow;](#a3)
 
-4. This assumes that the aperture reading and the light power are linearly correlated as mentioned earlier, which allow us to apply Grassmann’s linear law of color.
+<b id="f4">4</b> This assumes that the aperture reading and the light power are linearly correlated as mentioned earlier, which allow us to apply Grassmann’s linear law of color. [&leftarrow;](#a4)
 
-5. Actually, the numbers reported in Guild’s 1931 paper is: <code> L<sup>r</sup> = 1.0000, L<sup>g</sup> = 4.390, L<sup>b</sup> = 0.048. </code> Broadbent realized that Guild made a mistake, which Guild later corrected, but Guild never published the correct results. Broadbent \[Broadbent 2004a, Broadbent 2004b\] reverse engineered the data backwards from the CIE 1931 RGB data, which is what we are using here.
+<b id="f5">5</b> Actually, the numbers reported in Guild’s 1931 paper is: <code> L<sup>r</sup> = 1.0000, L<sup>g</sup> = 4.390, L<sup>b</sup> = 0.048. </code> Broadbent realized that Guild made a mistake, which Guild later corrected, but Guild never published the correct results. Broadbent \[Broadbent 2004a, Broadbent 2004b\] reverse engineered the data backwards from the CIE 1931 RGB data, which is what we are using here. [&leftarrow;](#a5)
 
-6. Again, this is the corrected result by Broadbent.
+<b id="f6">6</b> Again, this is the corrected result by Broadbent. [&leftarrow;](#a6)
 
-7. The power ratio and radiance ratio is the same, given the same area and solid angle.
+<b id="f6">7</b> The power ratio and radiance ratio is the same, given the same area and solid angle. [&leftarrow;](#a7)
