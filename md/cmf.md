@@ -1,4 +1,5 @@
 # How the CIE 1931 RGB Color Matching Functions Were Developed from the Initial Color Matching Experiments
+*Aug 22, 2020*
 
 ## 1. Introduction
 
@@ -36,7 +37,7 @@ This haunted me for a few days, especially because I wasn't able to find much in
 There were two color matching experiments conducted in the late 1920's, one by W. D. Wright and the other by J. Guild. Both experiments were conducted independently, but matched incredibly well. Guild combined both sets of data and performed a series of data augmentation (interpolation, smoothing, etc.) to generate the chromaticity data that became the CIE 1931 RGB space, from which the RGB CMFs are constructed.
 
 <p align="center">
-    <img src="/imgs/history.png">
+    <img src="imgs/history.png">
     <figcaption><b>Figure 1: Steps taken to transform the initial Wright-Guild color matching experimental data to develop the CIE 1931 RGB CMFs.</b></figcaption>
 </p>
 
@@ -101,7 +102,7 @@ In summary, the process of calculating the chromaticity coefficients for any tes
 Wright iterated step 2–4 for all the spectral lights from 400 nm to 700 nm at a 10-nm interval, and obtained the chromaticity coefficients of those spectral lights. The primary lights he used were monochromatic lights: 𝛌 = 650 nm for red, 𝛌 = 530 nm for blue, and 𝛌 = 460 nm for green. The reference white he used was the National Physical Laboratory (NPL) standard white (whose exact spectrum power distribution is shown in [Guild 1931], Table I). He had 10 observers for matching the spectral lights and 30 observers for matching the reference white.
 
 <p align="center">
-    <img src="/imgs/wrights.png">
+    <img src="imgs/wrights.png">
     <figcaption><b>Figure 2: Chromaticity coefficients of the spectral lights in Wright’s initial experiment. Figure taken from [Wright 1928].</b></figcaption>
 </p>
 
@@ -168,7 +169,7 @@ Meanwhile, Guild did a similar experiment using 7 observers, one year before Wri
 The exact spectrums of the primaries were not documented, as Guild simply mentioned that the primaries are obtained by "*passing the light from an opal-bulb gas-filled lamp through red, green and blue gelatine filters.*" This experiment allowed him to get the chromaticity coefficients of all the spectral lights from 380 nm to 700 nm at a 5-nm interval.
 
 <p align="center">
-    <img src="/imgs/guild.png">
+    <img src="imgs/guild.png">
     <figcaption><b>Figure 3: Chromaticity coefficients of the spectral lights in Guild’s initial experiment. Figure taken from [Guild 1930].</b></figcaption>
 </p>
 
@@ -177,7 +178,7 @@ Figure 3, which is taken from [Guild 1930], shows the spectral chromatic coeffic
 Similar to Wright, he then "synthesized" the data as if the experiment was conducted using the NPL primaries, still targeting the NPL standard white as the reference white.
 
 <p align="center">
-    <img src="/imgs/comparison.png">
+    <img src="imgs/comparison.png">
     <figcaption><b>Figure 4: Comparing chromaticity coefficients data from Wright and Guild. The figure is taken from [Broadbent 2004b].</b></figcaption>
 </p>
 
@@ -302,7 +303,7 @@ So let's recap. What we have calculated so far is the chromaticity coefficients 
 Figure 5 plots the spectral chromaticity coefficients used for the CIE 1931 RGB space. As we can see, the R value is indeed 1 at 𝛌 = 700 nm, the G value is 1 at 𝛌 = 546.1 nm, and the B value is 1 at 𝛌 = 435.8 nm, matching our intuition. But clearly these are not the color matching functions, yet!
 
 <p align="center">
-    <img src="/imgs/cie1931rgb.png">
+    <img src="imgs/cie1931rgb.png">
     <figcaption><b>Figure 5: Spectral chromaticity coefficients in the CIE 1931 RGB space.</b></figcaption>
 </p>
 
@@ -360,7 +361,7 @@ B(𝛌) = k(𝛌)b(𝛌) = V(𝛌)b(𝛌) / (Lʳr(𝛌) + Lᵍg(𝛌) + Lᵇb(�
 The CMFs can be seen as scaled from the original r(𝛌), g(𝛌), and b(𝛌). Note that k(𝛌) is a function of 𝛌, not a constant. These are the CMFs for CIE 1931 RGB.
 
 <p align="center">
-    <img src="/imgs/cmfcompare.png">
+    <img src="imgs/cmfcompare.png">
     <figcaption><b>Figure 6: CIE CMFs (solid) and CMFs using Wright-Guild data, where the reference white is the NPL standard white rather than the EEW.</b></figcaption>
 </p>
 
@@ -410,7 +411,7 @@ No. As we can see from this Equation, `R(𝛌) : G(𝛌): B(𝛌)` is the same 
 What it really means is that <code>𝚽(𝛌)L<sup>r</sup>R(𝛌)</code>, <code>𝚽(𝛌)L<sup>g</sup>G(𝛌)</code>, and <code>𝚽(𝛌)L<sup>b</sup>B(𝛌)</code> represent the luminance of red, green, and blue needed to match the luminance of 𝚽(𝛌).
 
 <p align="center">
-    <img src="/imgs/luminance.png">
+    <img src="imgs/luminance.png">
     <figcaption><b>Figure 7: The luminance of EEW and the luminance of the three primaries.</b></figcaption>
 </p>
 

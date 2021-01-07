@@ -1,4 +1,5 @@
 # Principles and Practices of Chromatic Adaptation
+*Jan 6, 2021*
 
 Colorimetry provides a scientific and quantitative way to measure and compare color. By specifying a set of primaries (e.g., RGB or XYZ) and the tristimulus values, we could tell whether two light stimuli will generate the same color perception. However, colorimetry works best for a fixed viewing condition. Thus, the change of viewing condition requires modeling various factors in viewing condition, one of which is the viewing illuminant.
 
@@ -88,7 +89,7 @@ This allows us to “predict” what color to produce to match a particular colo
 
 An interesting observation from this calculation is that even if the constant adapted responses \[Q, P, R\]<sup>T</sup> don’t take the value of \[1, 1, 1\]<sup>T</sup>, the result would still be the same because Q, P, and R will get canceled in the calculation.
 
-Not surprisingly, chromatic adaptation is critical to color management, whose central goal is to maintain color appearance across media. In fact, ICC color management introduces the notion of working space, which, in very simple terms, is basically a color space (in the colorimetry sense) combined with a viewing (reference) illuminant, the combination of which uniquely specifies the appearance of a color. ICC specifies D50 as the reference illuminant for all its working space and the [Profile Connection Space](http://www.color.org/profile.xalter) (PCS). All ICC profiles also use D50 as the reference illuminant. [Why](https://ninedegreesbelow.com/photography/xyz-rgb.html#ICC)? “*Because the ICC is heavily oriented toward facilitating the making of prints on paper, and D50 is the preferred reference white for evaluating prints on paper.*”
+Not surprisingly, chromatic adaptation is critical to color management, whose central goal is to maintain color appearance across media. In fact, ICC color management introduces the notion of working space, which, in very simple terms, is basically a color space (in the colorimetry sense) combined with a viewing (reference) illuminant, the combination of which uniquely specifies the appearance of a color. ICC specifies D50 as the reference illuminant for all its working space and the [Profile Connection Space](http://www.color.org/profile.xalter) (PCS). All ICC profiles also use D50 as the reference illuminant. [Why](https://ninedegreesbelow.com/photography/xyz-rgb.html#ICC)? *“Because the ICC is heavily oriented toward facilitating the making of prints on paper, and D50 is the preferred reference white for evaluating prints on paper.”*
 
 Of course, using D50 as the reference illuminant in a working space or the PCS doesn’t mean that only D50 can be used as the viewing illuminant in practice. It simply means that the associated tristimulus values are pre-adapted to D50; they can certainly be freely adapted to other illuminants as needed. Remember, ICC deals with color management, and so requires a color appearance model rather than just a colorimetry model.
 
@@ -160,7 +161,7 @@ The xy chromaticities of the three primaries and the white point (D50) in [D50-a
   </tr>
 </table>
 
-<p align="center"><img src="/imgs/cat.png" width="400"></p>
+<p align="center"><img src="imgs/cat.png" width="400"></p>
 
 The figure above just plots the xy chromaticities of the primaries under D65 and D50 adaptations. We can see that the adaptation from D65 to D50 is not dramatic but noticeable. An interesting observation is that, in changing the illuminant from D65 to D50, the primaries move roughly along the same direction from D65 to D50.
 
@@ -188,7 +189,7 @@ So if we want to consider, say, N different illuminants, we would need to calcul
 
 ### 3.3 Chromatic Adaptation to the Rescue
 
-Here is the interesting thing. The color patches on the [Macbeth ColorChecker](https://en.wikipedia.org/wiki/ColorChecker) are chosen “*to have consistent color appearance under a variety of lighting conditions.*” To what extent this is true is debatable, but for some illuminants that are not far apart (e.g., D50 and D65) we can roughly assume that color patches have similar color appearance under them. What this means is that for each patch, given the XYZ values under one illuminant, we can predict the XYZ values of a color patch under a different illuminant using chromatic adaptation without knowing the spectral reflectance of the color patch!
+Here is the interesting thing. The color patches on the [Macbeth ColorChecker](https://en.wikipedia.org/wiki/ColorChecker) are chosen *“to have consistent color appearance under a variety of lighting conditions.”* To what extent this is true is debatable, but for some illuminants that are not far apart (e.g., D50 and D65) we can roughly assume that color patches have similar color appearance under them. What this means is that for each patch, given the XYZ values under one illuminant, we can predict the XYZ values of a color patch under a different illuminant using chromatic adaptation without knowing the spectral reflectance of the color patch!
 
 As an example, Section 2.1.5 in [this](https://www.babelcolor.com/index_htm_files/A%20review%20of%20RGB%20color%20spaces.pdf) article from BabelColor uses chromatic adaptation to predict the XYZ values of a color patch (Blue Flower) in the ColorChecker under D50 given the XYZ values of the same patch under D65. This is feasible because the color patch is carefully picked such that it has the same color appearance under D50 and D65. Essentially, this becomes a cross-media color reproduction problem (usecase 1), where we calculate the XYZ values viewed under D50 that would match the color appearance of the given XYZ values viewed under D65. Since the patch maintains a constant color appearance under both illuminants, the actual measured XYZ values under D50 match very closely the predicted XYZ values through chromatic adaptation, as shown in the article (\[24.60, 23.40, 34.54\]<sub>predicted</sub> vs. \[24.64, 23.41, 34.43\]<sub>measured</sub>).
 
@@ -204,7 +205,7 @@ A key challenge in digital camera imaging is white balance, which arises from th
 
 The goal of white balance is to adjust the raw camera RGB values in such a way that the photo, when presented to the viewer under &Phi;<sub>v</sub>, will have the same color appearance as that of the original scene under &Phi;<sub>c</sub>. This is illustrated in the figure below, where \[R, G, B\]<sup>T</sup> denotes the raw camera RGB values (before color correction) and \[R<sub>wb</sub>, G<sub>wb</sub>, B<sub>wb</sub>\]<sup>T</sup> denotes the white balanced RGB, which is to be calculated. D<sub>c</sub> and D<sub>v</sub> in the figure denote the chromatic adaptation matrix under &Phi;<sub>c</sub> and &Phi;<sub>v</sub>, respectively.
 
-<p align="center"><img src="/imgs/wb.png" width="500"/></p>
+<p align="center"><img src="imgs/wb.png" width="500"/></p>
 
 \[R<sub>wb</sub>, G<sub>wb</sub>, B<sub>wb</sub>\]<sup>T</sup> can be calculated using chromatic adaptation. The only tricky thing here is that we don’t know the cone responses of the photographer before being adapted to &Phi;<sub>c</sub>. However, we do know the raw camera RGB values, from which we can calculate the pre-adapted cone responses of the photographer using the color correction matrix, which is denoted as T<sub>cam2lms</sub> in the figure above (technically CCM is Tcam2xyz, but it’s easier to go from XYZ to LMS --- a linear transformation). The rest is formality. The equations below show how to calculate \[R<sub>wb</sub>, G<sub>wb</sub>, B<sub>wb</sub>\]<sup>T</sup> from \[R, G, B\]<sup>T</sup>.
 
@@ -256,11 +257,11 @@ First, the CCM is only approximate and contains error: “In particular, color e
 
 Second, doing white balance in RAW allows the subsequent color correction to be less dependent on illuminant, which simplifies camera design and improves color rendering quality. Recall that the traditional CCM is heavily dependent on the illuminant (see Figure 5 in [Rowlands’ article](https://www.spiedigitallibrary.org/journals/optical-engineering/volume-59/issue-11/110801/Color-conversion-matrices-in-digital-cameras-a-tutorial/10.1117/1.OE.59.11.110801.full?SSO=1), which I copy and paste below), and online interpolation is needed if the capturing illuminant is very different from the pre-calibrated illuminants, which typically need to be a lot in order to minimize the interpolation error.
 
-<p align="center"><img src="/imgs/OE_59_11_110801_f005.png" width="400"></p>
+<p align="center"><img src="imgs/OE_59_11_110801_f005.png" width="400"></p>
 
 It turns out that if we were to scale the raw RGB first (e.g., white balancing in raw), the new CCM will be much more stable under different illuminants (see Figure 8 in [Rowlands’ article](https://www.spiedigitallibrary.org/journals/optical-engineering/volume-59/issue-11/110801/Color-conversion-matrices-in-digital-cameras-a-tutorial/10.1117/1.OE.59.11.110801.full?SSO=1), which I again copy and past below). Compare this figure with the figure above; you can see that the coefficients in the new CCM have much less variation across illuminant CCTs. That way, cameras can afford to have CCMs for just a few pre-calibrated illuminants without online interpolation.
 
-<p align="center"><img src="/imgs/OE_59_11_110801_f014.png" width="400"></p>
+<p align="center"><img src="imgs/OE_59_11_110801_f014.png" width="400"></p>
 
 According to Rowlands, traditional cameras perform white balance (in raw) before color correction while smartphone cameras and [DCRaw](https://dechifro.org/dcraw/) take the other approach, although there is [evidence](https://karaimer.github.io/camera-pipeline/) that smartphone cameras are increasingly taking the former approach too. [Adobe’s DNG converter](https://helpx.adobe.com/photoshop/using/adobe-dng-converter.html) provides both modes.
 

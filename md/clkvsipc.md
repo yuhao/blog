@@ -1,6 +1,6 @@
 # How Did Researchers Predict the End of the Road for Conventional Microarchitectures 14 Years Ago
 
-*Dec 8, 2014* <br/><br/>
+*Dec 8, 2014*
 
 Over the past a few decades, we have been witnessing drastic changes in microprocessors. If I have to summarize, there are two milestone transitions: from single core to multicore, and from multicore toward more specialized accelerators. While it’s clear that the so-called [dark](https://www.cc.gatech.edu/~hadi/doc/paper/2011-isca-dark_silicon.pdf) [silicon](http://cseweb.ucsd.edu/~jsampson/ConservationCores.pdf) is the reason that we are gradually shifting from the multicore era to the specialization regime, it is not as clean and easy to explain why we moved from single core to multicore.
 
